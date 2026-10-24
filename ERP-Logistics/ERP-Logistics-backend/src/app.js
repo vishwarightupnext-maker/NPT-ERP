@@ -1,0 +1,54 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const authRoutes     = require('./routes/authRoutes');
+const companyRoutes  = require('./routes/companyRoutes');
+const userRoutes     = require('./routes/userRoutes');
+const vehicleRoutes  = require('./routes/vehicleRoutes');
+const driverRoutes   = require('./routes/driverRoutes');
+const driverHRRoutes = require('./routes/driverHRRoutes');
+const customerRoutes = require('./routes/customerRoutes');
+const pricingRoutes  = require('./routes/pricingRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
+const dispatchRoutes = require('./routes/dispatchRoutes');
+const lrRoutes       = require('./routes/lrRoutes');
+const invoiceRoutes  = require('./routes/invoiceRoutes');
+const routeRoutes    = require('./routes/routeRoutes');
+const hrmRoutes      = require('./routes/hrmRoutes');
+const vendorRoutes   = require('./routes/vendorRoutes');
+const tripExpenseRoutes = require('./routes/tripExpenseRoutes');
+const officeExpenseRoutes = require('./routes/officeExpenseRoutes');
+const vendorTripRoutes = require('./routes/vendorTripRoutes');
+const vendorVehicleRoutes = require('./routes/vendorVehicleRoutes');
+const reportsRoutes = require('./routes/reportsRoutes');
+
+const app = express();
+
+app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
+app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+app.use('/api/auth',       authRoutes);
+app.use('/api/company',    companyRoutes);
+app.use('/api/users',      userRoutes);
+app.use('/api/vehicles',   vehicleRoutes);
+app.use('/api/drivers',    driverRoutes);
+app.use('/api/driver-hr',  driverHRRoutes);
+app.use('/api/customers',  customerRoutes);
+app.use('/api/pricing',    pricingRoutes);
+app.use('/api/analytics',  analyticsRoutes);
+app.use('/api/dispatches', dispatchRoutes);
+app.use('/api/lr',         lrRoutes);
+app.use('/api/invoices',   invoiceRoutes);
+app.use('/api/routes',     routeRoutes);
+app.use('/api/hrm',        hrmRoutes);
+app.use('/api/vendors',    vendorRoutes);
+app.use('/api/trip-expenses', tripExpenseRoutes);
+app.use('/api/office-expenses', officeExpenseRoutes);
+app.use('/api/vendor-trips', vendorTripRoutes);
+app.use('/api/vendor-vehicles', vendorVehicleRoutes);
+app.use('/api/reports', reportsRoutes);
+
+module.exports = app;

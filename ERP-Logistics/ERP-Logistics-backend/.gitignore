@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+
+# Environment variables (contains real secrets — never commit)
+.env
+.env.local
+.env.*.local
+.env.example
+.env.production
+.env.development
+
+# Uploaded files (runtime user content — driver/vehicle/vendor documents)
+uploads/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
